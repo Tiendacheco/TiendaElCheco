@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Programación II</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+  <style>
+        body {
+            background-color: #000;
+            color: #FFF; /* Texto blanco por defecto */
+        }
+        .cta {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+        .cta span {
+            padding-bottom: 7px;
+            letter-spacing: 4px;
+            font-size: 14px;
+            padding-right: 15px;
+            text-transform: uppercase;
+            color: #FFF; /* Texto blanco para el botón */
+        }
+        .cta svg {
+            fill: #FFF; /* SVG blanco */
+            transform: translateX(-8px);
+            transition: all 0.3s ease;
+        }
+        .cta:hover svg {
+            transform: translateX(0);
+        }
+        .cta:active svg {
+            transform: scale(0.9);
+        }
+        .hover-underline-animation {
+            position: relative;
+            color: #FFF;
+            padding-bottom: 20px;
+        }
+        .hover-underline-animation:after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #FFF;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        .cta:hover .hover-underline-animation:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        #precio-final {
+            text-align: right;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Elementos de HTML -->
+    <div id="misdatos">
+      <h1 class="blanco">Tienda "El checo"</h1>
+    </div>
+    <hr>
+
+    <div id="misdatos">
+        <button class="btn btn-primary" onclick="agregaLeche()"><i class="fas fa-cart-plus"></i> Agregar Leche</button>
+        <button class="btn btn-success" onclick="agregarMarias()"><i class="fas fa-cookie"></i> Agregar Marias</button>
+        <button class="btn btn-warning" onclick="agregarPaletaPayaso()"><i class="fas fa-candy-cane"></i> Agregar Paleta Payaso</button>
+        <button class="btn btn-info" onclick="agreagarJugoJumex()"><i class="fas fa-wine-bottle"></i> Agregar Jugo jumex</button>
+        <button class="btn btn-danger" onclick="agregarDoritos()"><i class="fas fa-pepper-hot"></i> Agregar Doritos</button>
+    </div>
+
+    <div class="container">
+        <table id="tabla" data-height="360" data-auto-refresh="true">
+            <thead>
+                <tr>
+                    <th data-field="nombre">Nombre </th>
+                    <th data-field="categoria">Categoria</th>
+                    <th data-field="precio">Precio</th>
+                    <th data-field="imagen" data-formatter="formatoImagen">Imagen producto</th>
+                    
+                </tr>
+            </thead>
+        </table>
+    </div>
+<div id="precio-final">
+        <button class="cta" onclick="opciones()">
+            <span class="hover-underline-animation">Finalizar</span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+                <path id="Path_10" data-name="Path 10" d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)"></path>
+            </svg>
+        </button>
+    </div>
+    <hr>
+   
+    <hr>
+    <div id="misdatos">
+        <h10>Armando Enrique Lozano Reyes | armando.lozano2797@alumnos.udg </h10>
+        <h10>enriquelozano705@gmail.com</h10>
+        <h10>Programacion web2</h10>
+             <h10>ANGEL EMMANUEL SANCHEZ CUENCA</h10>
+     <h4>Copyright © Todos los derechos reservados.</h4>
+    </div>
+
+    <script>
+      //unos besitos//
+        // Datos de los productos
+        var lechelala = {
+            nombre: "leche lala 1l",
+          categoria: "Producto lacteo",
+            precio: 36,
+            imagen: "https://www.movil.farmaciasguadalajara.com/wcsstore/FGCAS/wcs/products/823597_A_1280_AL.jpg"
+        };
+
+        var mariagalleta = {
+            nombre: "galleta Maria 34gr",
+            categoria:"Galleta",
+            precio: 19,
+            imagen: "https://www.gamesacookies.com/sites/gamesa.com/files/2021-11/marias-individual-v3.png"
+        };
+
+        var paletona = {
+            nombre: "paleta payaso",
+            categoria:"Dulce",
+            precio: 23,
+            imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf9Qp2gRVVR5sMwv5uGC3j1JFuqmA7SXobJ2lpDgAwRG8TDiF5uxiNRZ0&s=10"
+        };
+         var doritoos ={
+           nombre:"Doritos Incognita",
+           categoria:"Fritura",
+           precio:19,
+           imagen: "https://dulceriacatalina.com/cdn/shop/products/DoritosIncognito_Negros_225x.jpg?v=1610129990"
+         }
+         var juguitt = {
+           nombre :"Jugo jumex 1l antiox",
+           categoria:"Bedida de sabor",
+           precio:35,
+           imagen:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2NI4RoYYIpslrJdsqtjPAJhjQKa-GVdw_FojboHcX1eKFqW8_YXtS5Lk&s=10"
+           
+         }
+        var datos = [];
+        var precio=0;
+        $(function (){
+          $
+          ('#tabla').bootstrapTable({
+            data:datos,
+            formatNoMatches:
+        function (){
+          return'No agregas nada aun ';
+        }
+          });
+        });
+
+        // Función para formatear la columna de imagen
+        function formatoImagen(value) {
+            return '<img src="' + value + '" alt="Imagen del producto" width="100">';
+        }
+
+        // Función para mostrar los datos en la tabla
+        function muestraDatos() {
+            $('#tabla').bootstrapTable('load', datos);
+        }
+
+        // Función para agregar un producto a los datos
+        function agregarProducto(producto) {
+            datos.push(producto);
+            muestraDatos();
+        }
+
+        // Función para manejar las opciones de compra
+        function opciones() {
+            var opcion = Number(prompt("Ingresa una opción: \n1) Borrar artículos \n2) Finalizar compra"));
+            
+            switch (opcion) {
+                case 1:
+                    borraDatos();
+                    break;
+                case 2:
+                    var precioFinal = sumaArticulos();
+                    var metodoPago = Number(prompt("Selecciona el método de pago: \n1) Tarjeta (10% de descuento) \n2) Efectivo"));
+
+                    switch (metodoPago) {
+                        case 1:
+                            var precioConDescuento = precioFinal * 0.90;
+                            alert("El precio con el 10% de descuento es: $" + precioConDescuento.toFixed(2));
+                            var montoPago = Number(prompt("Ingresa el monto a pagar:"));
+                            if (montoPago >= precioConDescuento) {
+                                alert("Pago realizado con éxito. Gracias por su compra.");
+                    borraDatos();
+                    
+                                window.close();  // Cierra la ventana
+                            } else {
+                                alert("Monto insuficiente. No se pudo realizar la compra.");
+                            }
+                            break;
+                        case 2:
+                            alert("El precio a pagar es: $" + precioFinal.toFixed(2));
+                            var montoPago = Number(prompt("Ingresa el monto a pagar:"));
+                            if (montoPago >= precioFinal) {
+                                var cambio = montoPago - precioFinal;
+                                alert("Pago realizado con éxito. Su cambio es: $" + cambio.toFixed(2));
+                                borraDatos();
+                                window.close();  // Cierra la ventana
+                            } else {
+                                alert("Monto insuficiente. No se pudo realizar la compra.");
+                            }
+                            break;
+                        default:
+                            alert("Método de pago no válido.");
+                    }
+                    break;
+                default:
+                    alert("Opción no válida");
+            }
+        }
+
+        // Función para calcular el precio total de los productos
+        function sumaArticulos() {
+            var precioFinal = 0;
+
+            for (var i = 0; i < datos.length; i++) {
+                precioFinal += datos[i].precio;
+            }
+
+            alert("Pagarás $" + precioFinal);
+            return precioFinal;
+        }
+
+        // Función para borrar todos los datos
+        function borraDatos() {
+            datos = [];
+            muestraDatos();
+        }
+       function agregarMarias(){
+         datos.push(mariagalleta)
+         muestraDatos();
+       }
+       function agregarDoritos(){
+         datos.push(doritoos)
+         muestraDatos();
+       } 
+       function agregaLeche(){
+         datos.push(lechelala)
+         muestraDatos();
+       }
+function agreagarJugoJumex(){
+         datos.push(juguitt)
+         muestraDatos();
+       }
+      function agregarPaletaPayaso(){
+         datos.push(paletona)
+         muestraDatos();
+       }
+        // Inicialización de la tabla al cargar la página
+        $(function () {
+            $('#tabla').bootstrapTable({
+                data: datos,
+                formatNoMatches: function () {
+                    return 'No hay datos';
+                }
+            });
+        });
+
+        // Actualización del precio final al agregar un nuevo producto
+        function actualizaPrecio() {
+            var precioTotal = 0;
+            for (var i = 0; i < datos.length; i++) {
+                precioTotal += datos[i].precio;
+            }
+            $("#precio-final").text("Precio final: $" + precioTotal.toFixed(2));
+        }
+    </script>
+</body>
+</html>
